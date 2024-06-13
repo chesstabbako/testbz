@@ -41,7 +41,7 @@ class TaskController extends Controller
         $task = Task::create($request->all());
 
         return response()->json([
-            'response' => $task->name . "successfully created",
+            'response' => $task->name . " successfully created",
         ], 200);
     }
 
@@ -77,6 +77,28 @@ class TaskController extends Controller
         } else {
             return response()->json([
                 'response' => $task->id . " could not be updated",
+            ], 403);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function complete(UpdateTaskRequest $request, Task $task)
+    {
+        //
+
+        $task = task::findOrFail($task->id);
+        if ($task) {
+            $task->update([
+                "complete" => 1
+            ]);
+            return response()->json([
+                'response' => $task->name . " successfully completed",
+            ], 200);
+        } else {
+            return response()->json([
+                'response' => $task->id . " could not be completed",
             ], 403);
         }
     }
