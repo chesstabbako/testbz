@@ -13,7 +13,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks= Task::all()->paginate();
+        $tasks = Task::paginate(15);
 
         return response()->json([
             'response' => $tasks,
@@ -38,10 +38,10 @@ class TaskController extends Controller
             'name' => ['required'],
         ]);
 
-        $task= Task::create($request->all());
+        $task = Task::create($request->all());
 
         return response()->json([
-            'response' => $task . "successfully created",
+            'response' => $task->name . "successfully created",
         ], 200);
     }
 
@@ -67,6 +67,18 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task)
     {
         //
+        $information = $request->all();
+        $task = task::findOrFail($task->id);
+        if ($task) {
+            $task->update($information);
+            return response()->json([
+                'response' => $task->id . " successfully updated",
+            ], 200);
+        } else {
+            return response()->json([
+                'response' => $task->id . " could not be updated",
+            ], 403);
+        }
     }
 
     /**
@@ -74,6 +86,18 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+
+        $task = Task::findOrFail($task->id);
+
+        if ($task) {
+            $task->update($task);
+            return response()->json([
+                'response' => $task->id . " successfully deleted",
+            ], 200);
+        } else {
+            return response()->json([
+                'response' => $task->id . " could not be deleted",
+            ], 403);
+        }
     }
 }
