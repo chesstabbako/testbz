@@ -13,7 +13,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks= Task::all()->paginate();
+
+        return response()->json([
+            'response' => $tasks,
+        ], 200);
     }
 
     /**
@@ -30,6 +34,15 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         //
+        $request->validate([
+            'name' => ['required'],
+        ]);
+
+        $task= Task::create($request->all());
+
+        return response()->json([
+            'response' => $task . "successfully created",
+        ], 200);
     }
 
     /**
