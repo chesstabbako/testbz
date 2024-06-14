@@ -11,6 +11,12 @@
 
 Download the project and you may run on the console "php artisan serve", it usually throws http://127.0.0.1:8000/ on local. You just need to add "api" after it and then use the diferent routes for the tasks.
 
+-Please, don't forget to run the migrations to avoid issues: "php artisan migrate". Continue reading or more datails...
+
+The DB used for this project was MySql. 
+
+- Please, do not forget to use the db name for phpmyadmin: here, the name I used was "todo". Be careful with the env file.
+
 Example:
 
 - POST /tasks: Create a new task. Please, the only field you may create is a task with a name field.
@@ -20,7 +26,3 @@ Example:
 - PATCH /tasks/:id/complete: update the task to let the user known that the taks was completed... It has a "complete" field that is boolean. It accepts 1(true) or 0(false). By default, at the time to create the task is 0(no completed).
 
 For instance: to take all the task you may use POSTMAN: and with the method "GET" use http://127.0.0.1:8000/api/tasks. It will show you all the tasks availables on the DataBase.
-
-The DB used for this project was MySql. 
-
-- Please, do not forget to use the db name for phpmyadmind: here, the i used was todo. Be careful with the env file.
