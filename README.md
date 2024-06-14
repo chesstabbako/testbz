@@ -9,6 +9,8 @@
 
 ## About this API
 
+-It's recommended to use PHP version laravel 8, 9 0r 10. (php 8 version).
+
 Download the project and you may run on the console "php artisan serve", it usually throws http://127.0.0.1:8000/ on local. You just need to add "api" after it and then use the diferent routes for the tasks.
 
 -Please, don't forget to run the migrations to avoid issues: "php artisan migrate". Continue reading or more datails...
