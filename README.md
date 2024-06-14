@@ -13,7 +13,7 @@
 
 Download the project and you may run on the console "php artisan serve", it usually throws http://127.0.0.1:8000/ on local. You just need to add "api" after it and then use the diferent routes for the tasks.
 
--Please, don't forget to run the migrations to avoid issues: "php artisan migrate". Continue reading or more datails...
+-Please, don't forget to run the migrations to avoid issues: "php artisan migrate". Continue reading for more datails...
 
 The DB used for this project was MySql. 
 
