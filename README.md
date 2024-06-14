@@ -34,3 +34,10 @@ For instance: to take all the task you may use POSTMAN: and with the method "GET
 # Google Calendar API
 
 Please, read this for Laravel https://packagist.org/packages/google/apiclient
+
+# POSTMAN and testing
+
+-use the routes for CRUD.
+
+for testing you can use the command "vendor/bin/phpunit"
+
