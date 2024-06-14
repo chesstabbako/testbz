@@ -43,7 +43,7 @@ class TaskTest extends TestCase
 
         $task= Task::inRandomOrder()->first();
 
-        $response = $this->put('/api/tasks'.$task->id, [
+        $response = $this->put('/api/tasks/'.$task->id, [
             "name" => "Book updated test"
         ]);
 
@@ -54,9 +54,6 @@ class TaskTest extends TestCase
         $this->assertDatabaseHas('tasks', ['name' => 'Book updated test', "complete" => 0]);
     }
 
-    /**
-     * @test
-     */
     public function task_delete()
     {
 
