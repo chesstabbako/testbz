@@ -100,7 +100,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($task->id);
 
         if ($task) {
-            $task->update($task);
+            $task->delete($task);
             return response()->json(204);
         } else {
             return response()->json(403);
