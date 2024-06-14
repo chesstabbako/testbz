@@ -17,7 +17,7 @@ Download the project and you may run on the console "php artisan serve", it usua
 
 The DB used for this project was MySql. 
 
-- Please, do not forget to use the db name for phpmyadmin: here, the name I used was "todo". Be careful with the env file and see very well what port you're using for the connection with phpmyadmin on your locl machine. In my case was 3307 but it's usually 3306.
+- Please, do not forget to use the db name for phpmyadmin: here, the name I used was "todo". Be careful with the env file and see very well what port you're using for the connection with phpmyadmin on your local machine. In my case was 3307 but it's usually 3306.
 
 -You can use the env.example file and create the .env. You just need to use the "todo" name for database. 
 
