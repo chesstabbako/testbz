@@ -15,9 +15,7 @@ class TaskController extends Controller
     {
         $tasks = Task::paginate(15);
 
-        return response()->json([
-            'response' => $tasks,
-        ], 200);
+        return response()->json(200);
     }
 
     /**
@@ -40,9 +38,7 @@ class TaskController extends Controller
 
         $task = Task::create($request->all());
 
-        return response()->json([
-            'response' => $task->name . " successfully created",
-        ], 200);
+        return response()->json(201);
     }
 
     /**
@@ -71,13 +67,9 @@ class TaskController extends Controller
         $task = task::findOrFail($task->id);
         if ($task) {
             $task->update($information);
-            return response()->json([
-                'response' => $task->id . " successfully updated",
-            ], 200);
+            return response()->json(200);
         } else {
-            return response()->json([
-                'response' => $task->id . " could not be updated",
-            ], 403);
+            return response()->json(403);
         }
     }
 
@@ -93,13 +85,9 @@ class TaskController extends Controller
             $task->update([
                 "complete" => 1
             ]);
-            return response()->json([
-                'response' => $task->name . " successfully completed",
-            ], 200);
+            return response()->json(200);
         } else {
-            return response()->json([
-                'response' => $task->id . " could not be completed",
-            ], 403);
+            return response()->json(403);
         }
     }
 
@@ -113,13 +101,9 @@ class TaskController extends Controller
 
         if ($task) {
             $task->update($task);
-            return response()->json([
-                'response' => $task->id . " successfully deleted",
-            ], 200);
+            return response()->json(204);
         } else {
-            return response()->json([
-                'response' => $task->id . " could not be deleted",
-            ], 403);
+            return response()->json(403);
         }
     }
 }
