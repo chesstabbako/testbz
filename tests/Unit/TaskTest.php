@@ -2,13 +2,14 @@
 
 namespace Tests\Unit;
 
+use App\Models\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
 {
 
-    public function task_store(): void
+    public function task_store()
     {
 
         $response = $this->post('/api/tasks', [
@@ -25,23 +26,24 @@ class TaskTest extends TestCase
     /**
      * @test
      */
-    public function task_list(): void
+    public function task_list()
     {
 
         $response = $this->get('/api/tasks');
 
         $response->assertJsonMissing(["data" => ["*" =>  ["name", "complete"]]])
             ->assertStatus(200);
-
     }
 
-     /**
+    /**
      * @test
      */
-    public function task_update(): void
+    public function task_update()
     {
 
-        $response = $this->put('/api/tasks/2', [
+        $task= Task::inRandomOrder()->first();
+
+        $response = $this->put('/api/tasks'.$task->id, [
             "name" => "Book updated test"
         ]);
 
@@ -52,16 +54,18 @@ class TaskTest extends TestCase
         $this->assertDatabaseHas('tasks', ['name' => 'Book updated test', "complete" => 0]);
     }
 
-     /**
+    /**
      * @test
      */
-    public function task_delete(): void
+    public function task_delete()
     {
 
-        $response = $this->json('DELETE', '/api/tasks/2');
+        $task= Task::inRandomOrder()->first();
+
+        $response = $this->delete('/api/tasks/'.$task->id);
 
         $response->assertStatus(204);
 
-        $this->assertDatabaseHas('tasks', ['id' => '2']);
+        $this->assertDatabaseHas('tasks', ['id' => $task->id]);
     }
 }
